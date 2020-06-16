@@ -2,9 +2,13 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import config from 'config'
 import chalk from 'chalk'
+import { error } from '@pronix/hyper-flow'
 
 const app = express()
-const PORT = config.get("port")
+const PORT: number = config.get("port")
+const isProd = process.env.NODE_ENV === 'production'
+
+if (typeof PORT !== 'number') throw error(`port error`, 2)
 
 app.use(bodyParser.json())
 
@@ -26,6 +30,12 @@ app.post('/webhook', (req, res) => {
     }  
 })
 
+
 app.listen(PORT || 3500, () => {
-    console.log(`[ 🚀 ]-[ ${ chalk.blueBright.bold(`server has been started`) } ]-[ ${ chalk.redBright.bold(`PORT:`) } ${ chalk.greenBright.bold.italic(PORT) } ]`)
+    console.log(`
+[ 🚀 ]-[ ${ chalk.blueBright.bold(`server has been started`) } ]
+
+[ ${ chalk.redBright.bold(`PORT:`) } ${ chalk.greenBright.bold.italic(PORT) } ]
+[ ${ chalk.redBright.bold`mode:` } ${ isProd && chalk.greenBright.bold.italic`production` || chalk.greenBright.bold.italic`development` } ]
+    `)
 })
