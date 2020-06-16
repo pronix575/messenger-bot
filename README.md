@@ -6,23 +6,23 @@ messenger bot
 git clone http://github.com/pronix575/hyper-flow
 cd hyper-flow
 
-yarn setup
+$ yarn setup
 # or
-npm setup
+$ npm setup
 ```
 ## build 🛠
 ```bash
-yarn build
+$ yarn build
 ```
 ## start 🚀
 ```bash
-yarn start
+$ yarn start
 ```
 
 ## developing 🧱
 ```bash
-yarn dev:build
+$ yarn dev:build
 ```
 ```bash
-yarn dev:start
+$ yarn dev:start
 ```
